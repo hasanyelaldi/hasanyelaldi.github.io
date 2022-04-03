@@ -1,0 +1,2 @@
+(this.webpackJsonphasanyelaldi=this.webpackJsonphasanyelaldi||[]).push([[6],{84:function(a,e,s){"use strict";s.r(e);s(0),s(85);var t=s(1);e.default=function(a){var e=a.title;return Object(t.jsx)("div",{className:"header",children:e})}}}]);
+//# sourceMappingURL=6.ca7f288a.chunk.js.map

@@ -1,0 +1,44 @@
+{
+	"experiences": [
+		{
+			"title": "Software Engineer",
+			"subtitle": "Siemens AG",
+			"workType": "Full-time",
+			"workDescription": [
+				"Development of user interfaces and HTTP Services of IPC's.",
+				"CI/CD & Cloud Integration."
+			],
+			"dateText": "12/2020 – Present"
+		},
+		{
+			"title": "Software Engineer",
+			"subtitle": "Hitit",
+			"workType": "Full-time",
+			"workDescription": [
+				"Development to back end services of Airtuerk (Online Travel Agency).",
+				"Development to services required for opening to third party airline channels of Pegasus Airlines (NDC Standard - IATA)."
+			],
+			"dateText": "07/2018 – 12/2020"
+		},
+		{
+			"title": "Software Engineer",
+			"subtitle": "Saha BT",
+			"workType": "Full-time",
+			"workDescription": [
+				"Development of Test Automation Libraries.",
+				"Load, Stress and Performance Testing."
+			],
+			"dateText": "11/2017 – 07/2018"
+		},
+		{
+			"title": "Software Engineer",
+			"subtitle": "Omicron",
+			"workType": "Full-time",
+			"workDescription": [
+				"Support and development B2C projects.",
+				"Database management."
+			],
+			"dateText": "09/2016 – 10/2017"
+		}
+	]
+}
