@@ -1,1 +1,0 @@
-# hasanyelaldi.github.io
