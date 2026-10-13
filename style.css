@@ -1,0 +1,539 @@
+/* Departure Mono, a pixel monospace by Helena Zhang (SIL OFL, see fonts/OFL.txt) */
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/departure-mono.woff2') format('woff2');
+  font-display: swap;
+}
+
+:root {
+  --paper: #ecece6;
+  --panel: #f8f8f3;
+  --ink: #1d1d27;
+  --muted: #62627a;
+  --dot: #d6d6cc;
+
+  /* Four soft tones, one per section. Each has a fill and a darker edge. */
+  --mint: #bfe6dc;
+  --mint-edge: #2e8f86;
+  --amber: #f5dea0;
+  --amber-edge: #b07a12;
+  --lilac: #ddd3f2;
+  --lilac-edge: #7656b8;
+  --coral: #f6cbc3;
+  --coral-edge: #c4493f;
+
+  --font: 'Departure Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --label: 11ch;
+}
+
+/* Secret Game Boy mode (see script.js): four greens, every tone folds into them. */
+:root[data-gameboy] {
+  --paper: #9bbc0f;
+  --panel: #8bac0f;
+  --ink: #0f380f;
+  --muted: #1f4a1f;
+  --dot: #8bac0f;
+  --mint: #8bac0f;
+  --mint-edge: #306230;
+  --amber: #8bac0f;
+  --amber-edge: #306230;
+  --lilac: #8bac0f;
+  --lilac-edge: #306230;
+  --coral: #8bac0f;
+  --coral-edge: #306230;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper) radial-gradient(circle at 1px 1px, var(--dot) 1px, transparent 0) 0 0 / 8px 8px;
+  color: var(--ink);
+  font: 15px/1.65 var(--font);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ol,
+ul,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+/* Hover, focus and selection all invert, like a highlighted menu item. */
+a:hover,
+a:focus-visible,
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Pixel box: a 2px border drawn on the four sides only, so the corners stay notched like an old game window. */
+.top .readout,
+.phases,
+.note,
+section h2 span {
+  --edge: var(--ink);
+  box-shadow:
+    0 -2px 0 0 var(--edge),
+    0 2px 0 0 var(--edge),
+    -2px 0 0 0 var(--edge),
+    2px 0 0 0 var(--edge);
+}
+
+.page {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* Top: the name as a title screen, and a status window */
+
+.top {
+  padding: 88px 0 55px;
+}
+
+.top h1 {
+  font-size: 66px;
+  line-height: 1;
+  margin-bottom: 44px;
+  text-shadow:
+    3px 3px 0 var(--coral),
+    6px 6px 0 var(--lilac);
+}
+
+.top .readout {
+  background: var(--panel);
+  padding: 16px 2ch;
+  max-width: 44rem;
+}
+
+.readout > div,
+.table > div {
+  display: grid;
+  grid-template-columns: var(--label) 1fr;
+  gap: 0 2ch;
+}
+
+.readout dt {
+  color: var(--muted);
+}
+
+.links a {
+  margin-right: 2ch;
+}
+
+/* Section labels: a tab in the section's tone, on a rule */
+
+.experience {
+  --tone: var(--mint);
+  --tone-edge: var(--mint-edge);
+}
+
+.skills {
+  --tone: var(--amber);
+  --tone-edge: var(--amber-edge);
+}
+
+.background {
+  --tone: var(--lilac);
+  --tone-edge: var(--lilac-edge);
+}
+
+.contact {
+  --tone: var(--coral);
+  --tone-edge: var(--coral-edge);
+}
+
+section {
+  padding: 55px 0 0;
+}
+
+section h2 {
+  display: flex;
+  align-items: center;
+  gap: 2ch;
+  margin-bottom: 33px;
+  font-size: 22px;
+}
+
+section h2 span {
+  background: var(--tone);
+  padding: 2px 1ch;
+}
+
+section h2::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(to right, var(--ink) 0 4px, transparent 4px 8px);
+}
+
+/* Experience */
+
+.role {
+  display: grid;
+  grid-template-columns: var(--label) 1fr;
+  gap: 0 2ch;
+  padding: 22px 0 33px;
+  border-top: 2px dotted var(--dot);
+}
+
+.role:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.years {
+  grid-row: span 2;
+  color: var(--muted);
+}
+
+/* Tenure bar: ten cells for 2016 to 2026, filled for the years at this job. */
+.tenure {
+  display: block;
+  width: 80px;
+  height: 8px;
+  margin-top: 8px;
+  background:
+    repeating-linear-gradient(to right, transparent 0 7px, var(--paper) 7px 8px),
+    linear-gradient(
+      to right,
+      var(--dot) calc(var(--from) * 8px),
+      var(--mint-edge) calc(var(--from) * 8px) calc(var(--to) * 8px),
+      var(--dot) calc(var(--to) * 8px)
+    );
+}
+
+.role h3 {
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.role-title {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.summary {
+  margin-bottom: 16px;
+}
+
+.phases {
+  background: var(--panel);
+  margin: 2px 2px 22px;
+}
+
+.phases li {
+  display: grid;
+  grid-template-columns: 10ch 1fr;
+  gap: 0 2ch;
+  padding: 8px 1ch;
+}
+
+.phases li:first-child {
+  background: var(--mint);
+}
+
+.phases li + li {
+  border-top: 2px solid var(--ink);
+}
+
+.phase-years {
+  color: var(--muted);
+}
+
+.phases li:first-child .phase-years {
+  color: var(--ink);
+}
+
+.phase-text {
+  display: block;
+}
+
+.points li {
+  position: relative;
+  padding-left: 2ch;
+}
+
+.points li::before {
+  content: '-';
+  position: absolute;
+  left: 0;
+  color: var(--mint-edge);
+}
+
+.projects {
+  margin-top: 22px;
+}
+
+.projects h4 {
+  margin-bottom: 8px;
+}
+
+.projects h4::before {
+  content: '★ ';
+  color: var(--amber-edge);
+}
+
+.projects dl > div {
+  padding: 8px 0 8px 2ch;
+  border-left: 2px solid var(--mint-edge);
+}
+
+.projects dt::before {
+  content: '► ';
+  color: var(--mint-edge);
+}
+
+.projects dd {
+  color: var(--muted);
+  padding-left: 2ch;
+}
+
+/* Teaching: a dialog box, the one thing on the page that moves */
+
+.note {
+  position: relative;
+  margin: 24px 2px 2px;
+  padding: 12px 2ch 22px;
+  background: var(--panel);
+}
+
+.note figcaption {
+  display: inline-block;
+  margin-bottom: 4px;
+  padding: 0 1ch;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.note::after {
+  content: '▼';
+  position: absolute;
+  right: 2ch;
+  bottom: 4px;
+  color: var(--coral-edge);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note::after {
+    animation: none;
+  }
+}
+
+/* Skills and background: inventory rows with pixel icons */
+
+.table > div {
+  padding: 8px 0;
+  border-bottom: 2px dotted var(--dot);
+}
+
+.table dt {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+  color: var(--muted);
+}
+
+.icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: var(--tone-edge);
+  shape-rendering: crispEdges;
+}
+
+/* A small hop on the icon when its row is pointed at */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .table > div:hover .icon {
+    animation: hop 0.3s steps(2);
+  }
+}
+
+@keyframes hop {
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Contact */
+
+.contact-text {
+  max-width: 52ch;
+  margin-bottom: 26px;
+}
+
+.mail {
+  font-size: 22px;
+}
+
+/* The address as a game button: it sits on a ledge and presses down. */
+.mail a {
+  --edge: var(--ink);
+  display: inline-block;
+  max-width: 100%;
+  margin: 2px;
+  padding: 6px 2ch;
+  background: var(--coral);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  box-shadow:
+    0 -2px 0 0 var(--edge),
+    0 2px 0 0 var(--edge),
+    -2px 0 0 0 var(--edge),
+    2px 0 0 0 var(--edge),
+    0 6px 0 0 var(--coral-edge);
+}
+
+.mail a:hover,
+.mail a:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.mail a:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 -2px 0 0 var(--edge),
+    0 2px 0 0 var(--edge),
+    -2px 0 0 0 var(--edge),
+    2px 0 0 0 var(--edge);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 2ch;
+  margin-top: 88px;
+  padding: 16px 0 44px;
+  border-top: 2px solid var(--ink);
+  color: var(--muted);
+}
+
+.hint-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .hint-keys {
+    display: none;
+  }
+
+  .hint-touch {
+    display: inline;
+  }
+}
+
+.top h1 {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Message box for the secret, in the same pixel frame as the dialog */
+.toast {
+  --edge: var(--ink);
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 1;
+  max-width: calc(100% - 36px);
+  padding: 8px 2ch;
+  background: var(--panel);
+  box-shadow:
+    0 -2px 0 0 var(--edge),
+    0 2px 0 0 var(--edge),
+    -2px 0 0 0 var(--edge),
+    2px 0 0 0 var(--edge);
+  transform: translate(-50%, 120px);
+  transition: transform 0.25s steps(4);
+}
+
+.toast.is-shown {
+  transform: translate(-50%, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .top {
+    padding-top: 55px;
+  }
+
+  /* The name is 8.3em wide; scale it with the screen so it never overflows. */
+  .top h1 {
+    font-size: min(44px, calc(12vw - 6px));
+    margin-bottom: 33px;
+  }
+
+  .mail {
+    font-size: 15px;
+  }
+
+  .readout > div,
+  .table > div,
+  .role {
+    grid-template-columns: 1fr;
+  }
+
+  .years {
+    grid-row: auto;
+    display: flex;
+    align-items: center;
+    gap: 2ch;
+  }
+
+  .tenure {
+    margin-top: 0;
+  }
+
+  .phases li {
+    grid-template-columns: 1fr;
+  }
+}
